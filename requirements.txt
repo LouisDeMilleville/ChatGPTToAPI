@@ -1,0 +1,4 @@
+flask
+undetected_chromedriver
+selenium
+setuptools
