@@ -16,17 +16,27 @@ It uses a custom chromedriver because the protections used by OpenAI prevent bro
 
 # Available endpoints
 - /ask
+  
   Description : Creates a new chat and ask your prompt to ChatGPT
+  
   Required : - A POST request which must include a "Prompt" header with the prompt you want to ask as the value of this header
+  
   Returns :
+  
   Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  
   Answer : {the_answer}
 
 - /reply
+- 
   Description : Reply to an existing chat so ChatGPT will take in account your previous prompts to answer your prompt
+  
   Required : - A POST request which must include a "Prompt" header with the prompt you want to ask as the value of this header, and a "Chat-id" header with the id of the chat you want to reply on as the value of this header
+  
   Returns :
+  
   Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  
   Answer : {the_answer}
 
 
@@ -98,17 +108,27 @@ Il utilise un chromedriver modifié car les protections utilisées par OpenAI em
 
 # Endpoints disponibles
 - /ask
+  
   Description : Crée une nouvelle conversation et pose votre question à ChatGPT
+  
   Requis : - Une requête POST qui doit contenir un header "Prompt" avec comme valeur la question que vous souhaitez poser à ChatGPT
+  
   Retourne :
+  
   Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  
   Answer : {la_réponse}
 
 - /reply
+  
   Description : Répond à une conversation existante afin que ChatGPT prenne en compte vos questions précédentes pour répondre à votre question
+  
   Requis : - Une requête POST qui doit contenir un header "Prompt" avec comme valeur la question que vous souhaitez poser à ChatGPT, et un header "Chat-id" avec l'id de la conversation à laquelle vous souhaitez répondre comme valeur.
+  
   Retourne :
+  
   Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  
   Answer : {la_réponse}
 
 # Comment l'utiliser ?
