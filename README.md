@@ -14,9 +14,25 @@ When you ask a question to your server, it will create a new chat on your accoun
 
 It uses a custom chromedriver because the protections used by OpenAI prevent browsers detected as automated to use ChatGPT. You can run it fully in the background so you won't see the Chromium instance.
 
+# Available endpoints
+- /ask
+  Description : Creates a new chat and ask your prompt to ChatGPT
+  Required : - A POST request which must include a "Prompt" header with the prompt you want to ask as the value of this header
+  Returns :
+  Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  Answer : {the_answer}
+
+- /reply
+  Description : Reply to an existing chat so ChatGPT will take in account your previous prompts to answer your prompt
+  Required : - A POST request which must include a "Prompt" header with the prompt you want to ask as the value of this header, and a "Chat-id" header with the id of the chat you want to reply on as the value of this header
+  Returns :
+  Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  Answer : {the_answer}
+
+
 # How can i use it ?
 
-⚠️ This server has been developped and tested on Linux (Ubuntu 22.04 & 24.04). It should work on Windows and other systems since it uses Python and Chromium, but you may have to do some adjustements ⚠️
+⚠️ This server has been developped and tested on Linux (Ubuntu 24.04). It should work on Windows and other systems since it uses Python and Chromium, but you may have to do some adjustements ⚠️
 
 You will need python and pip first, if it's not already installed.
 
@@ -45,6 +61,10 @@ To verify the server fully works, you can try to ask a question from the termina
 > curl -X POST http://YOUR_SERVER_IP:20999/ask -H "Prompt: PUT_YOUR_PROMPT_HERE"
 
 You should see your question being prompted in the Chromium instance, then you should see the answer in the terminal. If it's the case, you can now run it in the background.
+
+If you want to verify the replies works too, you can also try to reply from the terminal :
+
+> curl -X POST http://YOUR_SERVER_IP:20999/reply -H "Prompt: PUT_YOUR_PROMPT_HERE" -H "Chat-id: ID_OF_YOUR_CHAT"
 
 # How to run it on the background
 
@@ -76,9 +96,24 @@ Lorsque vous posez une question via votre serveur, cela créera une nouvelle con
 
 Il utilise un chromedriver modifié car les protections utilisées par OpenAI empêchent les navigateurs détectés comme automatisés d'utiliser ChatGPT. Vous pouvez le faire tourner totalement en arrière plan afin de ne plus voir l'instance Chromium.
 
+# Endpoints disponibles
+- /ask
+  Description : Crée une nouvelle conversation et pose votre question à ChatGPT
+  Requis : - Une requête POST qui doit contenir un header "Prompt" avec comme valeur la question que vous souhaitez poser à ChatGPT
+  Retourne :
+  Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  Answer : {la_réponse}
+
+- /reply
+  Description : Répond à une conversation existante afin que ChatGPT prenne en compte vos questions précédentes pour répondre à votre question
+  Requis : - Une requête POST qui doit contenir un header "Prompt" avec comme valeur la question que vous souhaitez poser à ChatGPT, et un header "Chat-id" avec l'id de la conversation à laquelle vous souhaitez répondre comme valeur.
+  Retourne :
+  Chat id : XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  Answer : {la_réponse}
+
 # Comment l'utiliser ?
 
-⚠️ Ce serveur a été développé et testé sur Linux (Ubuntu 22.04 & 24.04). Il devrait fonctionner sur Windows et d'autres systèmes puisqu'il utilise Python et Selenium, mais vous pourriez avoir à faire quelques ajustements ⚠️
+⚠️ Ce serveur a été développé et testé sur Linux (Ubuntu 24.04). Il devrait fonctionner sur Windows et d'autres systèmes puisqu'il utilise Python et Selenium, mais vous pourriez avoir à faire quelques ajustements ⚠️
 
 Vous devrez déjà installer python et pip, si ce n'est pas déjà installé.
 
@@ -107,6 +142,10 @@ Pour vérifier que le serveur fonctionne parfaitement, vous pouvez essayer de lu
 > curl -X POST http://YOUR_SERVER_IP:20999/ask -H "Prompt: METTEZ_VOTRE_QUESTION_ICI"
 
 Vous devriez voir votre question être posée dans l'instance Chromium, Puis vous devriez voir la réponse apparaitre dans le terminal. Si c'est le cas, vous pouvez désormais le lancer en arrière plan.
+
+Si vous voulez vérifier que les réponses à une conversation existante fonctionnent, vous pouvez essayer ceci depuis le terminal :
+
+> curl -X POST http://YOUR_SERVER_IP:20999/reply -H "Prompt: METTEZ_VOTRE_QUESTION_ICI" -H "Chat-id: ID_DE_LA_CONVERSATION_A_LAQUELLE_REPONDRE"
 
 # Comment le lancer en arrière plan ?
 
