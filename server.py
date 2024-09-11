@@ -107,14 +107,15 @@ def ask():
         return make_response("Prompt not provided", 400)
 
     # We make sure the prompt is in utf8
-    prompt = prompt.encode('latin1').decode('utf-8')
+    prompt = prompt.encode('utf-8').decode('utf-8')
 
     # Then we reload chatGPT to make sure we're on a new chat
     driver.get('https://chatgpt.com/')
     time.sleep(3)
     
     # Then we paste the prompt on the text area and we send it
-    textarea_xpath = "/html/body/div[1]/div[2]/main/div[1]/div[2]/div/div[1]/div/form/div/div[2]/div/div/div[2]/textarea"
+    #textarea_xpath = "/html/body/div[1]/div[2]/main/div[1]/div[2]/div/div[1]/div/form/div/div[2]/div/div/div[2]/textarea"
+    textarea_xpath = "//*[@id=\"prompt-textarea\"]"
     try:
         element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, textarea_xpath))
@@ -151,7 +152,7 @@ def reply():
         return make_response("Chat_id not provided. If it's intentional, you should use the /ask endpoint instead")
 
     # We make sure the prompt is in utf8
-    prompt = prompt.encode('latin1').decode('utf-8')
+    prompt = prompt.encode('utf-8').decode('utf-8')
 
     # Then we reload chatGPT to make sure we're on a new chat
     chat_url = 'https://chatgpt.com/c/' + str(chat_id)
@@ -159,7 +160,8 @@ def reply():
     time.sleep(3)
     
     # Then we paste the prompt on the text area and we send it
-    textarea_xpath = "/html/body/div[1]/div[2]/main/div[1]/div[2]/div/div[1]/div/form/div/div[2]/div/div/div[2]/textarea"
+    #textarea_xpath = "/html/body/div[1]/div[2]/main/div[1]/div[2]/div/div[1]/div/form/div/div[2]/div/div/div[2]/textarea"
+    textarea_xpath = "//*[@id=\"prompt-textarea\"]"
     try:
         element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, textarea_xpath))
